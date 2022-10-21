@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.thibaultmeyer</groupId>
+    <artifactId>cuid</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>CUID Java</name>
+    <description>Collision-resistant ids optimized for horizontal scaling and performance</description>
+    <url>https://github.com/thibaultmeyer/cuid-java</url>
+
+    <scm>
+        <connection>scm:git:https://github.com/thibaultmeyer/cuid-java.git</connection>
+        <developerConnection>scm:git:https://github.com/thibaultmeyer/cuid-java.git</developerConnection>
+        <url>https://github.com/thibaultmeyer/cuid-java.git</url>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/thibaultmeyer/cuid-java/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://github.com/thibaultmeyer/cuid-java/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Thibault Meyer</name>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <!-- Plugins -->
+        <plugin.version.surefire>2.22.2</plugin.version.surefire>
+
+        <!-- Unit Tests -->
+        <dependency.version.junit>5.9.1</dependency.version.junit>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.version.surefire}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${dependency.version.junit}</version>
+        </dependency>
+    </dependencies>
+</project>

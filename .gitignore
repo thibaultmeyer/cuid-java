@@ -1,0 +1,37 @@
+*.class
+*.java~
+*.versionsBackup
+classpath.bootstrap
+
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+
+# Visual Studio Code
+.vscode
+
+
+# Eclipse
+.project
+.settings/
+.worksheet
+.metadata
+.loadpath
+.recommenders
+
+
+# Package Files #
+*.jar
+target/
+
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/nb-configuration.xml
+
+
+# Other
+.DS_Store
+Thumbs.db
