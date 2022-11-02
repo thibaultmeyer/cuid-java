@@ -8,7 +8,7 @@ Java implementation of CUID. Read more at <a href="https://usecuid.org/">CUID of
 
 
 ## Build
-To compile CUID for Java, you must ensure that Java 8 (or above) and Maven are correctly
+To compile CUID for Java, you must ensure that Java 11 (or above) and Maven are correctly
 installed.
 
     #> mvn package
