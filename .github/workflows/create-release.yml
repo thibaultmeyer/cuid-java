@@ -1,0 +1,45 @@
+name: Create Release
+
+on:
+    workflow_dispatch:
+        inputs:
+            NEW_RELEASE_VERSION:
+                description: 'Release version (without -SNAPSHOT)'
+                required: true
+
+jobs:
+    create-release:
+        name: Create Release ${{ github.event.inputs.NEW_RELEASE_VERSION }}
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v3
+
+            -   name: Check new Version Number
+                run: bash ./.github/check-new-version-number.sh "${{ github.event.inputs.NEW_RELEASE_VERSION }}"
+
+            -   name: Configure Git
+                run: |
+                    git config --global user.name 'Thibault Meyer'
+                    git config --global user.email 'thibaultmeyer@users.noreply.github.com'
+                    git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+
+            -   name: Create Release ${{ github.event.inputs.NEW_RELEASE_VERSION }}
+                run: |
+                    mvn versions:set -DnewVersion="${{ github.event.inputs.NEW_RELEASE_VERSION }}"
+                    mvn versions:commit
+                    git add .
+                    git commit -m "Release ${{ github.event.inputs.NEW_RELEASE_VERSION }}"
+                    git push
+
+            -   name: Determine next SNAPSHOT
+                run: |
+                    echo "NEXT_RELEASE_VERSION=$(echo ${{ github.event.inputs.NEW_RELEASE_VERSION }} | awk -F. -v OFS=. '{$NF += 1 ; print}')" >> $GITHUB_ENV
+
+            -   name: Move to next SNAPSHOT
+                run: |
+                    mvn versions:set -DnewVersion="${{ env.NEXT_RELEASE_VERSION }}-SNAPSHOT"
+                    mvn versions:commit
+                    git add .
+                    git commit -m "Move to next SNAPSHOT"
+                    git push
