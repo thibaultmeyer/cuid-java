@@ -1,0 +1,44 @@
+name: "CodeQL"
+
+on:
+    push:
+        branches: [ "master" ]
+    pull_request:
+        # The branches below must be a subset of the branches above
+        branches: [ "master" ]
+    schedule:
+        -   cron: '36 5 * * 4'
+
+jobs:
+    analyze:
+        name: Analyze
+        runs-on: ubuntu-latest
+        permissions:
+            actions: read
+            contents: read
+            security-events: write
+
+        strategy:
+            fail-fast: false
+            matrix:
+                language: [ 'java' ]
+
+        steps:
+            -   uses: actions/setup-java@v1
+                with:
+                    java-version: 17
+
+            -   name: Checkout repository
+                uses: actions/checkout@v3
+
+            # Initializes the CodeQL tools for scanning.
+            -   name: Initialize CodeQL
+                uses: github/codeql-action/init@v2
+                with:
+                    languages: ${{ matrix.language }}
+
+            -   name: Autobuild
+                uses: github/codeql-action/autobuild@v2
+
+            -   name: Perform CodeQL Analysis
+                uses: github/codeql-action/analyze@v2
