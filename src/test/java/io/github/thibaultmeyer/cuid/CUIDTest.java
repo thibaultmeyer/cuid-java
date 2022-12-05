@@ -1,4 +1,4 @@
-package fr.thibaultmeyer.cuid;
+package io.github.thibaultmeyer.cuid;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;

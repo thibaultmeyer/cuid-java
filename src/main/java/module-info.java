@@ -4,5 +4,5 @@
 module cuid {
 
     requires java.management;
-    exports fr.thibaultmeyer.cuid;
+    exports io.github.thibaultmeyer.cuid;
 }
