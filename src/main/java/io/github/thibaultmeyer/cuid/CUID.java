@@ -1,4 +1,4 @@
-package fr.thibaultmeyer.cuid;
+package io.github.thibaultmeyer.cuid;
 
 import java.lang.management.ManagementFactory;
 import java.security.SecureRandom;

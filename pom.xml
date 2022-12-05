@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.thibaultmeyer</groupId>
+    <groupId>io.github.thibaultmeyer</groupId>
     <artifactId>cuid</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>CUID Java</name>
     <description>Collision-resistant ids optimized for horizontal scaling and performance</description>
     <url>https://github.com/thibaultmeyer/cuid-java</url>
@@ -42,26 +42,120 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!-- Plugins -->
+        <plugin.version.mavengpg>3.0.1</plugin.version.mavengpg>
+        <plugin.version.mavenjavadoc>3.4.1</plugin.version.mavenjavadoc>
+        <plugin.version.mavensource>3.2.1</plugin.version.mavensource>
+        <plugin.version.sonatypenexus>1.6.13</plugin.version.sonatypenexus>
         <plugin.version.surefire>2.22.2</plugin.version.surefire>
 
         <!-- Unit Tests -->
         <dependency.version.junit>5.9.1</dependency.version.junit>
     </properties>
 
+    <profiles>
+        <!-- Profile: Sign Jars -->
+        <profile>
+            <id>sign-jars</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${plugin.version.mavengpg}</version>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>0xEC2C9047</keyname>
+                                    <passphraseServerId>0xEC2C9047</passphraseServerId>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${plugin.version.mavenjavadoc}</version>
+                <configuration>
+                    <doclint>all,-missing</doclint>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${plugin.version.surefire}</version>
                 <configuration>
                     <argLine>
-                        --add-opens cuid/fr.thibaultmeyer.cuid=ALL-UNNAMED
+                        --add-opens cuid/io.github.thibaultmeyer.cuid=ALL-UNNAMED
                     </argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${plugin.version.mavensource}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${plugin.version.sonatypenexus}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
