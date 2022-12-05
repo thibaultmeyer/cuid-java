@@ -1,6 +1,8 @@
 # CUID for Java
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://raw.githubusercontent.com/thibaultmeyer/cuid-java/master/LICENSE)
+[![Repository release](https://img.shields.io/github/v/release/thibaultmeyer/cuid-java?logo=github)](https://github.com/thibaultmeyer/cuid-java/releases)
+[![Maven](https://img.shields.io/maven-central/v/io.github.thibaultmeyer/cuid.svg?logo=apache-maven)](https://search.maven.org/artifact/io.github.thibaultmeyer/cuid)
 [![Repository size](https://img.shields.io/github/repo-size/thibaultmeyer/cuid-java.svg?logo=git)](https://github.com/thibaultmeyer/cuid-java)
 
 Java implementation of CUID. Read more at <a href="https://usecuid.org/">CUID official website</a>.
@@ -19,6 +21,14 @@ To speed up process, you can ignore unit tests by using: `-DskipTests=true -Dmav
 
 
 ## How to use
+
+```xml
+<dependency>
+  <groupId>io.github.thibaultmeyer</groupId>
+  <artifactId>cuid</artifactId>
+  <version>x.y.z</version>
+</dependency>
+```
 
 ```java
 final CUID cuid = CUID.randomCUID();
