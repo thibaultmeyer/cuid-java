@@ -6,7 +6,7 @@
 
     <groupId>fr.thibaultmeyer</groupId>
     <artifactId>cuid</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>CUID Java</name>
     <description>Collision-resistant ids optimized for horizontal scaling and performance</description>
     <url>https://github.com/thibaultmeyer/cuid-java</url>
