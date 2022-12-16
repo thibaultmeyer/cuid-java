@@ -162,6 +162,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${dependency.version.junit}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
