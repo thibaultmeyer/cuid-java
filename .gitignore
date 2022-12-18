@@ -4,7 +4,8 @@
 classpath.bootstrap
 
 
-# IntelliJ IDEA
+# JetBrains (IntelliJ / Fleet)
+.fleet/
 .idea/
 *.iml
 

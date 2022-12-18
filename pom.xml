@@ -31,7 +31,12 @@
 
     <developers>
         <developer>
+            <id>thibaultmeyer</id>
             <name>Thibault Meyer</name>
+            <roles>
+                <role>Owner</role>
+                <role>Developer</role>
+            </roles>
         </developer>
     </developers>
 
