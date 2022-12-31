@@ -5,14 +5,11 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-final class CUIDTest {
+final class CUIDv1Test {
 
     @Test
     void fromString() {
@@ -49,7 +46,7 @@ final class CUIDTest {
     void randomCUID() {
 
         // Act
-        final CUID cuid = CUID.randomCUID();
+        final CUID cuid = CUID.randomCUID1();
 
         // Assert
         Assertions.assertNotNull(cuid);
@@ -103,42 +100,10 @@ final class CUIDTest {
         // Act
         final Set<CUID> cuidSet = new HashSet<>();
         for (int i = 0; i < 500000; i += 1) {
-            cuidSet.add(CUID.randomCUID());
+            cuidSet.add(CUID.randomCUID1());
         }
 
         // Assert
         Assertions.assertEquals(500000, cuidSet.size());
-    }
-
-    @Test
-    void speedVersusUUID() {
-
-        System.gc();
-        for (int i = 0; i < 10; i += 1) {
-            UUID.randomUUID();
-        }
-
-        final List<UUID> uuidList = new ArrayList<>();
-        final long start2 = System.nanoTime();
-        for (int i = 0; i < 1_000_000; i += 1) {
-            uuidList.add(UUID.randomUUID());
-        }
-        final long end2 = System.nanoTime();
-        System.err.println("1,000,000 UUID have been generated in " + (end2 - start2) / 1000000 + " ms");
-        uuidList.clear();
-
-        System.gc();
-        for (int i = 0; i < 10; i += 1) {
-            CUID.randomCUID();
-        }
-
-        final List<CUID> cuidList = new ArrayList<>();
-        final long start = System.nanoTime();
-        for (int i = 0; i < 1_000_000; i += 1) {
-            cuidList.add(CUID.randomCUID());
-        }
-        final long end = System.nanoTime();
-        System.err.println("1,000,000 CUID have been generated in " + (end - start) / 1000000 + " ms");
-        cuidList.clear();
     }
 }
