@@ -31,8 +31,13 @@ To speed up process, you can ignore unit tests by using: `-DskipTests=true -Dmav
 ```
 
 ```java
-final CUID cuid = CUID.randomCUID();
+final CUID cuid = CUID.randomCUID1();
 System.out.println("CUID: " + cuid);
+```
+
+```java
+final CUID cuid = CUID.randomCUID2();
+System.out.println("CUID (Version 2): " + cuid);
 ```
 
 ```java
