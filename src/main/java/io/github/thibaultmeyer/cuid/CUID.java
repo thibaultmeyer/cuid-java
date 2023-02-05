@@ -53,23 +53,15 @@ public final class CUID implements Serializable, Comparable<CUID> {
     /**
      * Generates a new random CUID (Version 2).
      *
-     * @param withBigLength {@code true} to generate a long CUID (Version 2), otherwise, {@code false}
-     * @return Newly generated CUID (Version 2)
-     * @since 2.0.0
-     */
-    public static CUID randomCUID2(final boolean withBigLength) {
-
-        return randomCUID2(withBigLength ? CUIDv2.LENGTH_BIG : CUIDv2.LENGTH_STANDARD);
-    }
-
-    /**
-     * Generates a new random CUID (Version 2).
-     *
      * @param length requested CUID length
      * @return Newly generated CUID (Version 2)
-     * @since 2.0.0
+     * @since 2.0.1
      */
-    private static CUID randomCUID2(final int length) {
+    public static CUID randomCUID2(final int length) {
+
+        if (length <= 0) {
+            throw new CUIDGenerationException("the length must be at least 1");
+        }
 
         final String time = Long.toString(System.currentTimeMillis(), NUMBER_BASE);
         final char firstLetter = CUIDv2.ALPHABET_ARRAY[Math.abs(Common.nextIntValue()) % CUIDv2.ALPHABET_ARRAY.length];
@@ -123,7 +115,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
 
         return cuidAsString != null
             && (cuidAsString.length() == CUIDv1.LENGTH_STANDARD && cuidAsString.startsWith(CUIDv1.START_CHARACTER) // Version 1
-            || (cuidAsString.length() == CUIDv2.LENGTH_STANDARD || cuidAsString.length() == CUIDv2.LENGTH_BIG)) // Version 2
+            || (cuidAsString.length() > 0)) // Version 2
             && cuidAsString.chars()
             .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
             .count() == 0;
@@ -247,7 +239,6 @@ public final class CUID implements Serializable, Comparable<CUID> {
 
         // CUID configuration
         private static final int LENGTH_STANDARD = 24;
-        private static final int LENGTH_BIG = 32;
 
         // Counter
         private static int counter = Integer.MAX_VALUE;

@@ -74,13 +74,13 @@ final class PerformanceTest {
     @Test
     void speedCUIDv2Big() {
         for (int i = 0; i < 10; i += 1) {
-            CUID.randomCUID2(true);
+            CUID.randomCUID2(32);
         }
 
         final List<CUID> cuidList = new ArrayList<>();
         final long start = System.nanoTime();
         for (int i = 0; i < 1_000_000; i += 1) {
-            cuidList.add(CUID.randomCUID2(true));
+            cuidList.add(CUID.randomCUID2(32));
         }
         final long end = System.nanoTime();
 

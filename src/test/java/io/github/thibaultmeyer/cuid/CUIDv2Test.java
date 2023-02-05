@@ -1,5 +1,6 @@
 package io.github.thibaultmeyer.cuid;
 
+import io.github.thibaultmeyer.cuid.exception.CUIDGenerationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,7 @@ final class CUIDv2Test {
     void randomCUIDv2BigLength() {
 
         // Act
-        final CUID cuid = CUID.randomCUID2(true);
+        final CUID cuid = CUID.randomCUID2(32);
 
         // Assert
         Assertions.assertNotNull(cuid);
@@ -103,6 +104,30 @@ final class CUIDv2Test {
 
         // Assert
         Assertions.assertEquals(0, result);
+    }
+
+    @Test
+    void parameterizedLength() {
+
+        // Act
+        final CUID cuid = CUID.randomCUID2(2);
+
+        // Assert
+        Assertions.assertNotNull(cuid);
+        Assertions.assertEquals(2, cuid.toString().length());
+    }
+
+    @Test
+    void parameterizedLengthInvalidSize() {
+
+        // Act
+        final CUIDGenerationException exception = Assertions.assertThrows(
+            CUIDGenerationException.class,
+            () -> CUID.randomCUID2(-1));
+
+        // Assert
+        Assertions.assertNotNull(exception);
+        Assertions.assertEquals("CUID generation failure: the length must be at least 1", exception.getMessage());
     }
 
     @Test
