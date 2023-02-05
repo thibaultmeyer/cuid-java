@@ -17,4 +17,15 @@ public class CUIDGenerationException extends RuntimeException {
 
         super("CUID generation failure", cause);
     }
+
+    /**
+     * Creates a new instance.
+     *
+     * @param cause Cause of the exception
+     * @since 2.0.1
+     */
+    public CUIDGenerationException(final String cause) {
+
+        super("CUID generation failure: " + cause);
+    }
 }
