@@ -41,6 +41,12 @@ System.out.println("CUID (Version 2): " + cuid);
 ```
 
 ```java
+final int customLength = 8;  // Length must be, at least, 1
+final CUID cuid = CUID.randomCUID2(customLength);
+System.out.println("CUID (Version 2): " + cuid);
+```
+
+```java
 final CUID cuid = CUID.fromString("cl9gts1kw00393647w1z4v2tc");
 System.out.println("CUID: " + cuid);
 ```
