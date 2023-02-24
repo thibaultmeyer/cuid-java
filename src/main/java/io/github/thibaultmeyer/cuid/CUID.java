@@ -108,7 +108,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
      * Checks the {@code CUID} from the string standard representation.
      *
      * @param cuidAsString A string that specifies a {@code CUID} (Version 1 or 2)
-     * @return {@code true} If the string is not conform, otherwise, {@code false}
+     * @return {@code true} If the string is conforms, otherwise, {@code false}
      * @since 1.0.0
      */
     public static boolean isValid(final String cuidAsString) {
