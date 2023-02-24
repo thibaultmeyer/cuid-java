@@ -5,6 +5,8 @@
 [![Maven](https://img.shields.io/maven-central/v/io.github.thibaultmeyer/cuid.svg?logo=apache-maven)](https://search.maven.org/artifact/io.github.thibaultmeyer/cuid)
 [![Repository size](https://img.shields.io/github/repo-size/thibaultmeyer/cuid-java.svg?logo=git)](https://github.com/thibaultmeyer/cuid-java)
 
+[![Javadoc](https://javadoc.io/badge2/io.github.thibaultmeyer/cuid/javadoc.svg)](https://javadoc.io/doc/io.github.thibaultmeyer/cuid)
+
 Java implementation of CUID. Read more at <a href="https://usecuid.org/">CUID official website</a>.
 *****
 
