@@ -43,6 +43,32 @@ final class CUIDv1Test {
     }
 
     @Test
+    void isValid() {
+
+        // Arrange
+        final String cuidAsString = "cl9gts1kw00393647w1z4v2tc";
+
+        // Act
+        final boolean isValid = CUID.isValid(cuidAsString);
+
+        // Assert
+        Assertions.assertTrue(isValid);
+    }
+
+    @Test
+    void isValidInvalid() {
+
+        // Arrange
+        final String cuidAsString = "not-a-cuid";
+
+        // Act
+        final boolean isValid = CUID.isValid(cuidAsString);
+
+        // Assert
+        Assertions.assertFalse(isValid);
+    }
+
+    @Test
     void randomCUID() {
 
         // Act

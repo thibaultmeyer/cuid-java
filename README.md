@@ -51,6 +51,11 @@ final CUID cuid = CUID.fromString("cl9gts1kw00393647w1z4v2tc");
 System.out.println("CUID: " + cuid);
 ```
 
+```java
+final boolean isValid = CUID.isValid("cl9gts1kw00393647w1z4v2tc");
+System.out.println("Is 'cl9gts1kw00393647w1z4v2tc' a valid CUID ? " + isValid);
+```
+
 
 ## License
 This project is released under terms of the [MIT license](https://raw.githubusercontent.com/thibaultmeyer/cuid-java/master/LICENSE).
