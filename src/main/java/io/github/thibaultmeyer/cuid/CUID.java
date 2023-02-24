@@ -25,7 +25,9 @@ public final class CUID implements Serializable, Comparable<CUID> {
     // Base to use
     private static final int NUMBER_BASE = 36;
 
-    // CUID value
+    /**
+     * CUID internal value holder.
+     */
     private final String value;
 
     /**
