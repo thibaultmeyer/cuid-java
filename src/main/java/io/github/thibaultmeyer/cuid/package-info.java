@@ -22,6 +22,7 @@
  *  final boolean isValid = CUID.isValid("cl9gts1kw00393647w1z4v2tc");
  *  System.out.println("Is 'cl9gts1kw00393647w1z4v2tc' a valid CUID ? " + isValid);
  * }</pre>
+ *
  * @since 1.0.0
  */
 package io.github.thibaultmeyer.cuid;
