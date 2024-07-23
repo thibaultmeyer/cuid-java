@@ -66,7 +66,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
         }
 
         final String time = Long.toString(System.currentTimeMillis(), NUMBER_BASE);
-        final char firstLetter = CUIDv2.ALPHABET_ARRAY[Math.abs(Common.nextIntValue()) % CUIDv2.ALPHABET_ARRAY.length];
+        final char firstLetter = CUIDv2.ALPHABET_ARRAY[safeAbs(Common.nextIntValue()) % CUIDv2.ALPHABET_ARRAY.length];
         final String hash = CUIDv2.computeHash(
             time + CUIDv2.createEntropy(length) + CUIDv2.nextCounterValue() + Common.MACHINE_FINGERPRINT,
             length);
@@ -177,6 +177,11 @@ public final class CUID implements Serializable, Comparable<CUID> {
         return Objects.hash(value);
     }
 
+    // Always return non-negative value (including Integer.MIN_VALUE)
+    private static int safeAbs(int a) {
+        return a == Integer.MIN_VALUE ? 0 : Math.abs(a);
+    }
+
     /**
      * CUID Version 1.
      *
@@ -252,7 +257,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
          */
         private static synchronized int nextCounterValue() {
 
-            counter = counter < Integer.MAX_VALUE ? counter : Math.abs(Common.nextIntValue());
+            counter = counter < Integer.MAX_VALUE ? counter : safeAbs(Common.nextIntValue());
             return counter++;
         }
 
@@ -268,7 +273,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
             final StringBuilder stringBuilder = new StringBuilder(length);
 
             while (stringBuilder.length() < length) {
-                primeNumber = PRIME_NUMBER_ARRAY[Math.abs(Common.nextIntValue()) % PRIME_NUMBER_ARRAY.length];
+                primeNumber = PRIME_NUMBER_ARRAY[safeAbs(Common.nextIntValue()) % PRIME_NUMBER_ARRAY.length];
                 stringBuilder.append(Integer.toString(primeNumber * Common.nextIntValue(), NUMBER_BASE));
             }
 
