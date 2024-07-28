@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?logo=github)](https://raw.githubusercontent.com/thibaultmeyer/cuid-java/master/LICENSE)
 [![Repository release](https://img.shields.io/github/v/release/thibaultmeyer/cuid-java?logo=github)](https://github.com/thibaultmeyer/cuid-java/releases)
-[![Maven](https://img.shields.io/maven-central/v/io.github.thibaultmeyer/cuid.svg?logo=apache-maven)](https://central.sonatype.com/artifact/io.github.thibaultmeyer/cuid/2.0.2/versions)
+[![Maven](https://img.shields.io/maven-central/v/io.github.thibaultmeyer/cuid.svg?logo=apache-maven)](https://central.sonatype.com/artifact/io.github.thibaultmeyer/cuid/2.0.3/versions)
 [![Repository size](https://img.shields.io/github/repo-size/thibaultmeyer/cuid-java.svg?logo=git)](https://github.com/thibaultmeyer/cuid-java)
 
 [![Javadoc](https://javadoc.io/badge2/io.github.thibaultmeyer/cuid/javadoc.svg)](https://javadoc.io/doc/io.github.thibaultmeyer/cuid)
