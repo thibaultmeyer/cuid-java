@@ -117,10 +117,22 @@ public final class CUID implements Serializable, Comparable<CUID> {
 
         return cuidAsString != null
             && (cuidAsString.length() == CUIDv1.LENGTH_STANDARD && cuidAsString.startsWith(CUIDv1.START_CHARACTER) // Version 1
-            || (cuidAsString.length() > 0)) // Version 2
+            || (!cuidAsString.isEmpty())) // Version 2
             && cuidAsString.chars()
             .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
             .count() == 0;
+    }
+
+    /**
+     * Always return non-negative value.
+     *
+     * @param i the integer value
+     * @return a non-negative value
+     * @since 2.0.3
+     */
+    private static int safeAbs(final int i) {
+
+        return i == Integer.MIN_VALUE ? 0 : Math.abs(i);
     }
 
     /**
@@ -175,11 +187,6 @@ public final class CUID implements Serializable, Comparable<CUID> {
     public int hashCode() {
 
         return Objects.hash(value);
-    }
-
-    // Always return non-negative value (including Integer.MIN_VALUE)
-    private static int safeAbs(int a) {
-        return a == Integer.MIN_VALUE ? 0 : Math.abs(a);
     }
 
     /**
