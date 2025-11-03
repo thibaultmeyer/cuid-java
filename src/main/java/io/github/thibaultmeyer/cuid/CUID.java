@@ -225,7 +225,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
          */
         private static String getRandomBlock() {
 
-            return Common.padWithZero(Integer.toString(Common.nextIntValue() * DISCRETE_VALUE, NUMBER_BASE), BLOCK_SIZE);
+            return Common.padWithZero(Integer.toString(safeAbs(Common.nextIntValue() * DISCRETE_VALUE), NUMBER_BASE), BLOCK_SIZE);
         }
     }
 
