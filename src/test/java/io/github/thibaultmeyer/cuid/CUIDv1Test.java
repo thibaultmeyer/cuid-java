@@ -135,6 +135,7 @@ final class CUIDv1Test {
 
     @Test
     void validCreation500000() {
+
         // Act & Assert
         for (int i = 0; i < 500000; i += 1) {
             final CUID cuid = CUID.randomCUID1();

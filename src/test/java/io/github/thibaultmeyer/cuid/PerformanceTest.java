@@ -39,6 +39,7 @@ final class PerformanceTest {
 
     @Test
     void speedCUIDv1() {
+
         for (int i = 0; i < 10; i += 1) {
             CUID.randomCUID1();
         }
@@ -56,6 +57,7 @@ final class PerformanceTest {
 
     @Test
     void speedCUIDv2Standard() {
+
         for (int i = 0; i < 10; i += 1) {
             CUID.randomCUID2();
         }
@@ -73,6 +75,7 @@ final class PerformanceTest {
 
     @Test
     void speedCUIDv2Big() {
+
         for (int i = 0; i < 10; i += 1) {
             CUID.randomCUID2(32);
         }
