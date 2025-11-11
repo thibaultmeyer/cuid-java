@@ -29,7 +29,7 @@ jobs:
                     mvn versions:set -DnewVersion="${{ github.event.inputs.NEW_RELEASE_VERSION }}"
                     mvn versions:commit
                     git add .
-                    git commit -m "Release ${{ github.event.inputs.NEW_RELEASE_VERSION }}"
+                    git commit -m "chore(release): release ${{ github.event.inputs.NEW_RELEASE_VERSION }}"
                     git push
 
             -   name: Determine next SNAPSHOT
@@ -41,5 +41,5 @@ jobs:
                     mvn versions:set -DnewVersion="${{ env.NEXT_RELEASE_VERSION }}-SNAPSHOT"
                     mvn versions:commit
                     git add .
-                    git commit -m "Move to next SNAPSHOT"
+                    git commit -m "chore(release): next version is ${{ env.NEXT_RELEASE_VERSION }}-SNAPSHOT"
                     git push
