@@ -66,7 +66,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
         }
 
         final String time = Long.toString(System.currentTimeMillis(), NUMBER_BASE);
-        final char firstLetter = CUIDv2.ALPHABET_ARRAY[safeAbs(Common.nextIntValue()) % CUIDv2.ALPHABET_ARRAY.length];
+        final char firstLetter = CUIDv2.ALPHABET_ARRAY[safeAbs((int) (Common.nextFloatValue() * CUIDv2.ALPHABET_ARRAY.length))];
         final String hash = CUIDv2.computeHash(
             time + CUIDv2.createEntropy(length) + CUIDv2.nextCounterValue() + Common.MACHINE_FINGERPRINT,
             length);
@@ -276,12 +276,10 @@ public final class CUID implements Serializable, Comparable<CUID> {
          */
         private static String createEntropy(final int length) {
 
-            int primeNumber;
             final StringBuilder stringBuilder = new StringBuilder(length);
 
             while (stringBuilder.length() < length) {
-                primeNumber = PRIME_NUMBER_ARRAY[safeAbs(Common.nextIntValue()) % PRIME_NUMBER_ARRAY.length];
-                stringBuilder.append(Integer.toString(primeNumber * Common.nextIntValue(), NUMBER_BASE));
+                stringBuilder.append(Integer.toString(Common.nextIntValue() * NUMBER_BASE, NUMBER_BASE));
             }
 
             return stringBuilder.toString();
@@ -335,6 +333,17 @@ public final class CUID implements Serializable, Comparable<CUID> {
                 | (Common.RANDOM_BUFFER[randomBufferIndex++] & 0xff) << 16
                 | (Common.RANDOM_BUFFER[randomBufferIndex++] & 0xff) << 8
                 | (Common.RANDOM_BUFFER[randomBufferIndex++] & 0xff);
+        }
+
+        /**
+         * Retrieves next random floating value.
+         *
+         * @return A random floating number (between `0.0` and `1.0`)
+         * @since 2.0.5
+         */
+        private static float nextFloatValue() {
+
+            return NUMBER_GENERATOR.nextFloat();
         }
 
         /**
