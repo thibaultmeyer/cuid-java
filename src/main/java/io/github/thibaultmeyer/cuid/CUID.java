@@ -119,8 +119,7 @@ public final class CUID implements Serializable, Comparable<CUID> {
             && (cuidAsString.length() == CUIDv1.LENGTH_STANDARD && cuidAsString.startsWith(CUIDv1.START_CHARACTER) // Version 1
             || (!cuidAsString.isEmpty())) // Version 2
             && cuidAsString.chars()
-            .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
-            .count() == 0;
+            .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))).findAny().isEmpty();
     }
 
     /**
@@ -239,17 +238,6 @@ public final class CUID implements Serializable, Comparable<CUID> {
         private static final char[] ALPHABET_ARRAY = new char[]{
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        private static final int[] PRIME_NUMBER_ARRAY = new int[]{
-            109717,
-            109721,
-            109741,
-            109751,
-            109789,
-            109793,
-            109807,
-            109819,
-            109829,
-            109831};
 
         // CUID configuration
         private static final int LENGTH_STANDARD = 24;
