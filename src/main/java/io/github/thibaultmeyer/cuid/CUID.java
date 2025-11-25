@@ -119,7 +119,9 @@ public final class CUID implements Serializable, Comparable<CUID> {
             && (cuidAsString.length() == CUIDv1.LENGTH_STANDARD && cuidAsString.startsWith(CUIDv1.START_CHARACTER) // Version 1
             || (!cuidAsString.isEmpty())) // Version 2
             && cuidAsString.chars()
-            .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))).findAny().isEmpty();
+            .filter(c -> !((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
+            .findAny()
+            .isEmpty();
     }
 
     /**

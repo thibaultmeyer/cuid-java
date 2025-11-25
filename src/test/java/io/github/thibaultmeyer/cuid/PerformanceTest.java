@@ -14,7 +14,7 @@ import java.util.UUID;
 final class PerformanceTest {
 
     @BeforeAll
-    public static void beforeAll() {
+    static void beforeAll() {
 
         System.gc();
     }

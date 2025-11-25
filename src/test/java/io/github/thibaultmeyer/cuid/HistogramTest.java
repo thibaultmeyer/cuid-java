@@ -1,5 +1,6 @@
 package io.github.thibaultmeyer.cuid;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -30,6 +31,7 @@ final class HistogramTest {
         final Map<Integer, Integer> frequencies = histogram.histogram(20);
 
         // Assert
+        Assertions.assertNotNull(frequencies);
         System.out.println("CUID v1: " + frequencies);
     }
 
@@ -48,6 +50,7 @@ final class HistogramTest {
         final Map<Integer, Integer> frequencies = histogram.histogram(20);
 
         // Assert
+        Assertions.assertNotNull(frequencies);
         System.out.println("CUID v2: " + frequencies);
     }
 
