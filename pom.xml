@@ -50,7 +50,7 @@
         <plugin.version.mavengpg>3.0.1</plugin.version.mavengpg>
         <plugin.version.mavenjavadoc>3.4.1</plugin.version.mavenjavadoc>
         <plugin.version.mavensource>3.2.1</plugin.version.mavensource>
-        <plugin.version.sonatypenexus>1.6.13</plugin.version.sonatypenexus>
+        <plugin.version.sonatype>0.9.0</plugin.version.sonatype>
         <plugin.version.surefire>2.22.2</plugin.version.surefire>
 
         <!-- Unit Tests -->
@@ -140,7 +140,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.9.0</version>
+                <version>${plugin.version.sonatype}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
